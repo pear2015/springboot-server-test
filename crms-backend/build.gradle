@@ -1,0 +1,35 @@
+group 'com.gs.crms'
+
+archivesBaseName = 'crms-backend'
+
+
+configurations {
+    //每次build时检查更新
+    all { resolutionStrategy.cacheChangingModulesFor(0, "seconds") }
+}
+
+dependencies{
+    // 依赖模块
+    compile project(":crms-common")
+    compile project(":crms-systemmanager-webapi")
+    compile project(":crms-systemmanager-service")
+    compile project(":crms-crimenotice-webapi")
+    compile project(":crms-crimenotice-service")
+    compile project(":crms-applycertify-webapi")
+    compile project(":crms-applycertify-service")
+    compile project(":crms-statisticsanalysis-webapi")
+    compile project(":crms-statisticsanalysis-service")
+    //业务监控
+    compile project(":crms-businessmonitoring-webapi")
+    compile project(":crms-businessmonitoring-service")
+
+    //系统提供的依赖
+   /* providedCompile(
+            "javax.servlet:javax.servlet-api:3.1.0",
+            "javax.servlet.jsp:jsp-api:2.2.1-b03",
+            "javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1"
+    )*/
+}
+apply from: "../scripts/gradle/publish.gradle"
+apply from: "../scripts/gradle/warbuild.gradle"
+

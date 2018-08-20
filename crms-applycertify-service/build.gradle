@@ -1,0 +1,47 @@
+group 'com.gs.crms'
+
+apply plugin: "net.ltgt.apt"
+
+archivesBaseName = 'crms-applycertify-service'
+
+apply from: "../scripts/gradle/publish.gradle"
+
+dependencies{
+    // 依赖模块
+    compile project(":crms-common")
+    compile project(":crms-applycertify-contract")
+    compile project(":crms-crimenotice-contract")
+    compile project(":crms-businessmonitoring-contract")
+
+    //mapstrut
+    compile 'org.mapstruct:mapstruct:1.1.0.Final'
+
+    // OR use this with Java 8 and beyond
+    compile 'org.mapstruct:mapstruct-jdk8:1.1.0.Final'
+
+    apt 'org.mapstruct:mapstruct-processor:1.1.0.Final'
+    test {
+        useTestNG {}
+    }
+
+}
+
+//bootRepackage{
+//    enabled = false
+//}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true'
+    ]
+}
+
+
+
+
+
+
+
+
+
+

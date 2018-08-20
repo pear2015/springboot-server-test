@@ -1,0 +1,9 @@
+group 'com.gs.crms'
+archivesBaseName = 'crms-statisticsanalysis-contract'
+
+apply from: "../scripts/gradle/publish.gradle"
+
+dependencies {
+
+    compile project(":crms-common")
+}

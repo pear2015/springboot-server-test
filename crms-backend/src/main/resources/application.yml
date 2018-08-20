@@ -1,0 +1,84 @@
+#
+#    tomcat:   #默认使用tomcat连接池配置
+#      max-idle:  10 #数据库连接池允许的最大空闲连接数
+#      min-idle: 5 #数据库连接池允许最小的空闲连接数
+#      initial-size: 5 #数据库连接池初始连接数
+#      max-active:  100 #数据库连接池最大激活连接数
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ag_crms #业务数据库访问url
+    username: postgres  #业务数据库访问用户名
+    password: 123456   #业务数据库访问用户密码
+    driver-class-name: org.postgresql.Driver #数据库访问驱动名称
+    initialSize: 5 #初始化大小
+    minIdle: 5  #初始化最小
+    maxActive: 100 #初始化最大
+    maxWait: 3000 #配置获取连接等待超时的时间
+    timeBetweenEvictionRunsMills: 60000 #配置间隔多久需要进行一次检测 检测需要关闭的连接
+    minEvictableIdleTimeMills: 30000
+    vaildationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j #配置监控统计拦截的filters 去掉后监控界面sql无法统计 wall 用于防火墙
+    connectionProperties:
+        druid.stat.mergeSql: true
+        druid.stat.slowSqlMills: 5000
+    useGlobalDataSourceStat: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss  #日期序列化格式
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true                    #是否显示JPA查询的SQL。为true，日志中则会记录JPA查询数据库使用的SQL语句
+    database:   POSTGRESQL               #spring JPA 使用的数据库类型 #
+    properties:
+      enabled: true
+    hibernate:
+      ddl-auto: validate
+  http:  #文件上传配置
+     multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 5MB
+language: en_US
+ftphost: 172.18.2.147
+ftpuser: admin
+ftppwd: admin
+ftpport: 21
+workflow:
+  baseUrl: http://172.18.8.96:8181/workflow-server/api/v1
+process:
+  governmentApply: GovernMentNoCrimeApplication
+  personalApply: PersonalNoCrimeApplication
+  noticeProcess: NoticeApplication
+statisticsanalysis:
+  year: 5
+  auditList: 1,2
+  typeList: 1,2
+  resultList: 1,2
+domainPackagesToScan: com.gs.crms.systemmanager.service.entity,com.gs.crms.crimenotice.service.entity,com.gs.crms.applycertify.service.entity
+mongodb:
+  host: 172.18.24.128,172.18.24.129,172.18.24.130  #mongo集群主从ip 以逗号分隔
+  port: 27017
+  username: sa
+  password: 123456
+  database: crms
+citizen:
+  enable: true
+  isByCrime: true  # false 按照人口查询  2# true按照犯罪库查询
+  certificateType: 1
+  unKnowCrimeSexId:  3
+  unKnowSexId:  9
+  certificateTypeName: IDcard
+  byId_url: http://192.168.100.1:9102/api/getCitizenInfoByID
+  byName_url: http://172.24.2.181:8091/api/getCitizenInfoByFullName
+  exc_user: sec007
+search:
+   searchYear: 50  #查询犯罪信息年限搜索
+   isCompleteList: 4,5   #完成查询的申请状态 已打印、驳回
+   isUnCompleteList: 0,1,2,3  #未完成查询的申请状态已提交、分析中、审核中，待打印
+   noticeStatusList: 1,2,3,4  #公告的状态 审核中 重新分析 已批准 已拒绝
+   lastDays: 10 #最近10天
+   isValidDays: 90 #证书默认有效天数

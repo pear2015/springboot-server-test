@@ -1,0 +1,11 @@
+group 'com.gs.crms'
+archivesBaseName = 'crms-applycertify-contract'
+
+apply from: "../scripts/gradle/publish.gradle"
+
+dependencies {
+    // 依赖模块
+    compile project(":crms-common")
+    compile project(":crms-crimenotice-contract")
+}
+

@@ -1,0 +1,46 @@
+group 'com.gs.crms'
+
+apply plugin: "net.ltgt.apt"
+
+archivesBaseName = 'crms-systemmanager-service'
+
+apply from: "../scripts/gradle/publish.gradle"
+dependencies{
+    // 依赖模块
+       // compile  'com.gsafety.ecms.analysisgauge.access:ecms-analysisgauge-access-common:1.0.0-SNAPSHOT'
+       // compile  'com.gsafety.ecms.analysisgauge.access:ecms-analysisgauge-access-ambitusinfo-contract:1.0.0-SNAPSHOT'
+    compile project(":crms-common")
+    compile project(":crms-systemmanager-contract")
+
+    //mapstrut
+    compile 'org.mapstruct:mapstruct:1.1.0.Final'
+
+    // OR use this with Java 8 and beyond
+    compile 'org.mapstruct:mapstruct-jdk8:1.1.0.Final'
+
+    apt 'org.mapstruct:mapstruct-processor:1.1.0.Final'
+    test {
+        useTestNG {}
+    }
+
+}
+
+//bootRepackage{
+//    enabled = false
+//}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+            '-Amapstruct.suppressGeneratorTimestamp=true'
+    ]
+}
+
+
+
+
+
+
+
+
+
+

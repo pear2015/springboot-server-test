@@ -1,0 +1,20 @@
+rootProject.name = 'crms-server'
+
+include 'crms-backend',
+        'crms-common',
+        'crms-systemmanager-contract',
+        'crms-systemmanager-service',
+        'crms-systemmanager-webapi',
+        'crms-crimenotice-contract',
+        'crms-crimenotice-service',
+        'crms-crimenotice-webapi',
+        'crms-applycertify-contract',
+        'crms-applycertify-service',
+        'crms-applycertify-webapi',
+        'crms-statisticsanalysis-contract',
+        'crms-statisticsanalysis-service',
+        'crms-statisticsanalysis-webapi',
+        'crms-businessmonitoring-contract',
+        'crms-businessmonitoring-service',
+        'crms-businessmonitoring-webapi'
+
